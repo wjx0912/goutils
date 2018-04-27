@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetModulePath() string {
+func GetModuleDirectory() string {
 	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
 		panic(err)
@@ -14,9 +14,7 @@ func GetModulePath() string {
 	return strings.Replace(dir, "\\", "/", -1) + "/"
 }
 
-func SetWorkPath2Module() bool {
-	path := GetModulePath()
-	path = "D:/git/distribute_gtp/client_gtpserver/bin"	// TODO: remove this debug line
+func SetWorkDirectory(path string) bool {
 	err := os.Chdir(path)
 	if(err != nil) {
 		return false
