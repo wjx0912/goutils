@@ -26,8 +26,10 @@ var (
 
 
 func GetCompileTime() string {
-	date_array := strings.Split(_buildDate, " ")
-	time_array := strings.Split(_buildTime, ":")
+	date_array := strings.FieldsFunc(_buildDate, func(c rune) bool { return c == ' ' })
+	time_array := strings.FieldsFunc(_buildTime, func(c rune) bool { return c == ':' })
+	//date_array := strings.Split(_buildDate, " ")
+	//time_array := strings.Split(_buildTime, ":")
 	if(3 != len(date_array) || 3 != len(time_array)) {
 		return "can't support get compile time"
 	}
